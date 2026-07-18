@@ -1,0 +1,85 @@
+/* Tic-Tac-Toe Expert Rules Challenge — game-specific styles, layered on base.css */
+
+.demo-shell { max-width: 760px; margin: 0 auto; padding: 28px; }
+
+/* ---------- Start / setup screen ---------- */
+.start-card {
+  border: 1px solid var(--line); background: var(--paper-alt); padding: 30px 34px; margin-bottom: 24px;
+}
+.start-card ol { padding-left: 22px; color: var(--ink-soft); }
+.start-card li { margin-bottom: 8px; }
+
+/* ---------- Match header (persistent across all 3 games) ---------- */
+.match-header {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  padding: 14px 18px; border: 1px solid var(--line); background: var(--paper-alt); margin-bottom: 20px;
+}
+.match-header .game-count { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+.match-header .turn-indicator { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; }
+
+/* ---------- Score panel ---------- */
+.score-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+.score-card { border: 1px solid var(--line); background: var(--paper); padding: 16px 18px; text-align: center; }
+.score-card.active-turn { border-color: var(--accent); box-shadow: var(--shadow); }
+.score-card .player-name { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+.score-card .player-symbol { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; margin: 2px 0 6px; }
+.score-card .score-total { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--accent); }
+.score-card .score-breakdown { font-size: 0.72rem; color: var(--ink-soft); margin-top: 4px; }
+
+/* ---------- Board ---------- */
+.board-wrap { display: flex; justify-content: center; margin: 24px 0; }
+.board {
+  display: grid; grid-template-columns: repeat(3, 96px); grid-template-rows: repeat(3, 96px);
+  gap: 6px; background: var(--line);
+  border: 3px solid var(--ink);
+}
+.cell {
+  background: var(--paper); border: none; font-family: var(--font-serif); font-size: 2.6rem; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ink);
+  transition: background 0.15s ease;
+}
+.cell:hover:not(:disabled) { background: var(--paper-alt); }
+.cell:disabled { cursor: default; }
+.cell.mark-x { color: var(--accent); }
+.cell.mark-o { color: var(--slate); }
+.cell.win-line { background: var(--accent-tint); }
+.cell.expert-hint { box-shadow: inset 0 0 0 3px var(--gold); }
+
+/* ---------- Move feedback banner ---------- */
+.move-feedback {
+  border: 1px solid var(--line); padding: 14px 18px; margin: 0 0 20px; font-size: 0.9rem;
+  display: none;
+}
+.move-feedback.show { display: block; }
+.move-feedback.compliant { border-color: #2e7d4f; background: rgba(46,125,79,0.08); }
+.move-feedback.noncompliant { border-color: var(--accent); background: var(--accent-tint); }
+.move-feedback .verdict { font-weight: 700; }
+.move-feedback .rule-name { font-family: var(--font-mono); font-size: 0.8rem; }
+
+/* ---------- Game-end / match-end panels ---------- */
+.result-card {
+  border: 1px solid var(--line); background: var(--paper-alt); padding: 26px 30px; margin: 20px 0; text-align: center;
+}
+.result-card h2 { margin-bottom: 6px; }
+.result-card .points-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 10px; }
+
+.final-tally .score-card { padding: 22px 20px; }
+.final-tally .score-total { font-size: 2.6rem; }
+.match-winner-banner {
+  border: 2px solid var(--gold); background: var(--paper-alt); padding: 18px 22px; text-align: center;
+  font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;
+}
+
+/* ---------- Rules reference ---------- */
+.rules-ref { margin-top: 40px; }
+.rules-ref ol { padding-left: 22px; color: var(--ink-soft); font-size: 0.88rem; }
+.rules-ref li { margin-bottom: 6px; }
+.rules-ref .rule-title { font-weight: 700; color: var(--ink); }
+
+.hidden { display: none !important; }
+
+@media (max-width: 480px) {
+  .board { grid-template-columns: repeat(3, 84px); grid-template-rows: repeat(3, 84px); }
+  .cell { font-size: 2.2rem; }
+  .score-panel { grid-template-columns: 1fr; }
+}

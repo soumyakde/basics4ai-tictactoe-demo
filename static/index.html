@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic-Tac-Toe Expert Rules Challenge — Basics4AI</title>
+<meta name="description" content="Two players compete at tic-tac-toe; every move is checked against Crowley & Siegler's (1993) expert-rule model.">
+<link rel="stylesheet" href="/static/base.css">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand"><span class="mark">4AI</span>Tic-Tac-Toe Expert Rules Challenge</div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Two-player game</span>
+    <h1>Tic-Tac-Toe: Expert Rules Challenge</h1>
+    <p class="lede">Play three games against each other. Every move you make is checked against the same rules an expert tic-tac-toe player follows — see how many you match.</p>
+  </div>
+</header>
+
+<div class="demo-shell">
+
+  <!-- ============== START SCREEN ============== -->
+  <section id="startScreen">
+    <div class="start-card">
+      <h3>How this works</h3>
+      <ol>
+        <li>Two players share this device and take turns clicking a square.</li>
+        <li>After each move, you'll see whether it matched the <strong>expert rule</strong> for that situation: <strong>+1</strong> if it did, <strong>&minus;1</strong> if it didn't.</li>
+        <li>At the end of each game: <strong>+1</strong> for a win, <strong>0</strong> for a draw, <strong>&minus;1</strong> for a loss.</li>
+        <li>You'll play <strong>3 games</strong>. Whoever goes first alternates each game. Your final score is the total across all 3 games.</li>
+      </ol>
+    </div>
+    <button type="button" class="btn btn-primary" id="startBtn">Start Game 1 of 3</button>
+  </section>
+
+  <!-- ============== MATCH (IN-GAME) SCREEN ============== -->
+  <section id="matchScreen" class="hidden">
+    <div class="match-header">
+      <span class="game-count" id="gameCount">Game 1 of 3</span>
+      <span class="turn-indicator" id="turnIndicator"></span>
+    </div>
+
+    <div class="score-panel" id="scorePanel"></div>
+
+    <div class="move-feedback" id="moveFeedback"></div>
+
+    <div class="board-wrap">
+      <div class="board" id="board"></div>
+    </div>
+  </section>
+
+  <!-- ============== GAME-END SCREEN ============== -->
+  <section id="gameEndScreen" class="hidden">
+    <div class="result-card">
+      <h2 id="gameEndTitle"></h2>
+      <p id="gameEndDetail"></p>
+      <p class="points-note" id="gameEndPoints"></p>
+    </div>
+    <div class="score-panel" id="gameEndScorePanel"></div>
+    <div id="gameEndBreakdown"></div>
+    <button type="button" class="btn btn-primary" id="nextGameBtn"></button>
+  </section>
+
+  <!-- ============== FINAL MATCH RESULTS SCREEN ============== -->
+  <section id="finalScreen" class="hidden">
+    <div class="match-winner-banner" id="matchWinnerBanner"></div>
+    <div class="score-panel final-tally" id="finalScorePanel"></div>
+    <button type="button" class="btn btn-outline" id="newPairBtn">Start a New Pair (Reset)</button>
+  </section>
+
+  <!-- ============== RULES REFERENCE (always visible, for the facilitator) ============== -->
+  <section class="rules-ref">
+    <h3>Expert rule hierarchy (Crowley &amp; Siegler, 1993)</h3>
+    <p class="fine">Checked in this order — the first rule that applies defines the expert move for that turn.</p>
+    <ol>
+      <li><span class="rule-title">Win</span> — complete a line if you can.</li>
+      <li><span class="rule-title">Block</span> — stop your opponent from completing a line.</li>
+      <li><span class="rule-title">Fork</span> — create two winning threats at once.</li>
+      <li><span class="rule-title">Block Fork</span> — stop your opponent from creating a fork (either by forcing them to block you instead, or by occupying the fork square directly).</li>
+      <li><span class="rule-title">Play Center</span> — take the middle square if it's open.</li>
+      <li><span class="rule-title">Play Opposite Corner</span> — if your opponent is in a corner, take the opposite one.</li>
+      <li><span class="rule-title">Play Empty Corner</span> — take any open corner.</li>
+      <li><span class="rule-title">Play Empty Side</span> — take any open edge square.</li>
+    </ol>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="fine">Basics4AI · Non-research demo — nothing typed or played here is stored beyond the current browser session. Part of Soumya K. De's PhD research, University at Buffalo. Expert-rule model: Crowley, K., &amp; Siegler, R. S. (1993). Flexible Strategy Use in Young Children's Tic-Tac-Toe. <em>Cognitive Science, 17</em>(4), 531&ndash;561.</p>
+  </div>
+</footer>
+
+<script src="/static/expert_rules.js"></script>
+<script src="/static/game.js"></script>
+</body>
+</html>
