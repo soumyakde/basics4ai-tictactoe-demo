@@ -20,22 +20,28 @@
   --max: 1080px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #ece7e0;
-    --ink-soft: #b8b2a8;
-    --paper: #171513;
-    --paper-alt: #201d1a;
-    --line: #3a352f;
-    --accent: #d68a93;
-    --accent-bright: #e3a4ac;
-    --accent-tint: #2c1c1f;
-    --slate: #a9b7c0;
-    --slate-tint: #1c2226;
-    --gold: #cbab5c;
-    --shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  }
-}
+/* The <meta name="color-scheme" content="light"> tag alone did not stop
+   some browsers' automatic forced-dark rendering of web content (this is
+   a browser-level color-inversion heuristic applied on top of the page,
+   separate from -- and not fully suppressed by -- the meta tag in every
+   browser version). The CSS color-scheme property is the more
+   authoritative, standards-current mechanism for the same opt-out, so it
+   is set here too as the real fix; the meta tag is kept as a belt-and-
+   suspenders companion. */
+:root { color-scheme: only light; }
+
+/* Pinned to light mode always -- see PROJECT_STATUS.md "Dark-mode
+   usability fix". This app has no theme-toggle UI, so the automatic
+   @media (prefers-color-scheme: dark) switch was the only thing that
+   could put a participant into dark mode, and several buttons/inputs
+   never set an explicit text color -- they inherited a dark/system
+   default that was nearly invisible against the dark-mode background.
+   Rather than patch each individual color gap, the whole automatic
+   switch is disabled here so every participant sees the identical,
+   verified-legible light theme regardless of their device's OS
+   dark-mode setting. (The :root[data-theme="dark"] override below is
+   inert -- nothing in this app sets data-theme -- kept only so this
+   file stays a drop-in match with the shared base.css used elsewhere.) */
 :root[data-theme="dark"] {
   --ink: #ece7e0; --ink-soft: #b8b2a8; --paper: #171513; --paper-alt: #201d1a;
   --line: #3a352f; --accent: #d68a93; --accent-bright: #e3a4ac; --accent-tint: #2c1c1f;
